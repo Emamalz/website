@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Delivering Value - Sky</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-white font-sans text-gray-800 flex flex-col min-h-screen">
+
+  <!-- Header -->
+  <header class="py-8 shadow bg-white">
+    <div class="w-full text-center px-12">
+      <h1 class="text-3xl font-bold text-gray-800">Sky</h1>
+      <h2 class="text-xl text-gray-600 mt-1">Delivering Value</h2>
+      <div class="flex justify-center mt-3 space-x-1">
+        <div class="w-4 h-1 bg-blue-600"></div> <!-- Step 1 -->
+        <div class="w-4 h-1 bg-blue-300"></div>
+        <div class="w-4 h-1 bg-blue-300"></div>
+        <div class="w-4 h-1 bg-blue-300"></div>
+        <div class="w-4 h-1 bg-blue-300"></div>
+        <div class="w-4 h-1 bg-blue-300"></div>
+        <div class="w-4 h-1 bg-blue-300"></div>
+        <div class="w-4 h-1 bg-blue-300"></div>
+        <div class="w-4 h-1 bg-blue-300"></div>
+        <div class="w-4 h-1 bg-blue-300"></div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow py-12">
+    <div class="w-full max-w-6xl mx-auto p-10 border rounded-xl shadow-lg bg-white">
+      <!-- Top Section -->
+      <div class="flex space-x-6 items-start mb-10">
+        <div class="flex-shrink-0">
+          <img src="3301551.png" alt="Traffic Light" class="w-40 h-40" />
+        </div>
+        <div class="flex-1 flex flex-col items-center text-center space-y-4">
+          <div>
+            <p class="text-xl font-semibold">
+              We aim to deliver value through a smooth, reliable release process that empowers our teams to move fast and with confidence.
+            </p>
+            <p class="text-red-600 text-lg">
+              While most of our pipeline is automated and efficient, there are still opportunities to reduce manual steps and improve consistency. Continuous improvement is key to ensuring we deliver the right value at the right time, safely and sustainably.
+            </p>
+          </div>
+
+          <!-- Dropdowns -->
+          <div class="flex gap-4">
+            <select id="statusSelect" onchange="updateStatusColor(this)"
+              class="border rounded px-4 py-2 text-lg font-semibold bg-green-100 text-green-700">
+              <option value="Green" selected>Green</option>
+              <option value="Amber">Amber</option>
+              <option value="Red">Red</option>
+            </select>
+
+            <select id="trendSelect" onchange="updateTrendColor(this)"
+              class="border rounded px-4 py-2 text-lg font-semibold bg-red-100 text-red-700">
+              <option value="Stable">Stable</option>
+              <option value="Getting Worse" selected>Getting Worse</option>
+              <option value="Improving">Improving</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Editable Sections -->
+      <div class="space-y-6 text-lg">
+        <div>
+          <h3 class="font-bold mb-1">Comments</h3>
+          <textarea id="comments" maxlength="2000" class="w-full border rounded p-3 text-base text-gray-700" rows="3"></textarea>
+        </div>
+
+        <div>
+          <h3 class="font-bold mb-1">Actions team can take</h3>
+          <textarea id="actions" maxlength="2000" class="w-full border rounded p-3 text-base text-gray-700" rows="3"></textarea>
+        </div>
+
+        <div>
+          <h3 class="font-bold mb-1">Solutions</h3>
+          <input id="solutions" type="text" maxlength="2000"
+                 class="border p-3 w-full rounded text-purple-600 text-base" />
+        </div>
+
+        <!-- Warning Message -->
+        <p id="warningMsg" class="text-red-600 font-semibold hidden">Please fill out all fields before proceeding.</p>
+      </div>
+    </div>
+
+    <!-- Bottom Navigation Buttons -->
+    <div class="flex justify-between max-w-6xl mx-auto mt-12 px-10">
+      <button onclick="location.href='Intro.html'" class="text-white bg-red-600 px-6 py-2 text-lg rounded shadow">
+        ⬅ PREV
+      </button>
+      <button onclick="validateAndProceed()" class="text-white bg-blue-600 px-6 py-2 text-lg rounded shadow">
+        NEXT ➡
+      </button>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-8 bg-gray-100 text-center text-sm text-gray-500">
+    © 2025 Sky - All rights reserved.
+  </footer>
+
+  <!-- JavaScript -->
+  <script>
+    function updateStatusColor(select) {
+      select.classList.remove('bg-green-100', 'text-green-700', 'bg-yellow-100', 'text-yellow-800', 'bg-red-100', 'text-red-700');
+      if (select.value === 'Green') {
+        select.classList.add('bg-green-100', 'text-green-700');
+      } else if (select.value === 'Amber') {
+        select.classList.add('bg-yellow-100', 'text-yellow-800');
+      } else if (select.value === 'Red') {
+        select.classList.add('bg-red-100', 'text-red-700');
+      }
+    }
+
+    function updateTrendColor(select) {
+      select.classList.remove('bg-green-100', 'text-green-700', 'bg-red-100', 'text-red-700');
+      if (select.value === 'Stable' || select.value === 'Improving') {
+        select.classList.add('bg-green-100', 'text-green-700');
+      } else {
+        select.classList.add('bg-red-100', 'text-red-700');
+      }
+    }
+
+    function validateAndProceed() {
+      const comments = document.getElementById('comments').value.trim();
+      const actions = document.getElementById('actions').value.trim();
+      const solutions = document.getElementById('solutions').value.trim();
+      const warning = document.getElementById('warningMsg');
+
+      if (!comments || !actions || !solutions) {
+        warning.classList.remove('hidden');
+      } else {
+        warning.classList.add('hidden');
+        location.href = 'Easeofrelease.html';
+      }
+    }
+  </script>
+
+</body>
+</html>
