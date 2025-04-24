@@ -4,30 +4,43 @@
   <meta charset="UTF-8">
   <title>Fun - Sky</title>
   <script src="https://cdn.tailwindcss.com"></script>
+   <!-- stylesheet-->
+   <link rel="stylesheet" href="header.css">
+
 </head>
-<body class="bg-white font-sans text-gray-800 flex flex-col min-h-screen">
+<body class="bg-gray-50 font-sans text-gray-800 flex flex-col min-h-screen">
 
   <!-- Header -->
-  <header class="py-8 shadow bg-white">
-    <div class="w-full text-center px-12">
-      <h1 class="text-3xl font-bold text-gray-800">Sky</h1>
-      <h2 class="text-xl text-gray-600 mt-1">Fun</h2>
-      <div class="flex justify-center mt-3 space-x-1">
-        <div class="w-4 h-1 bg-blue-300"></div>
-        <div class="w-4 h-1 bg-blue-300"></div>
-        <div class="w-4 h-1 bg-blue-300"></div>
-        <div class="w-4 h-1 bg-blue-300"></div>
-        <div class="w-4 h-1 bg-blue-600"></div> <!-- Step 5 active -->
-        <div class="w-4 h-1 bg-blue-300"></div>
-        <div class="w-4 h-1 bg-blue-300"></div>
-        <div class="w-4 h-1 bg-blue-300"></div>
-        <div class="w-4 h-1 bg-blue-300"></div>
-        <div class="w-4 h-1 bg-blue-300"></div>
-      </div>
-    </div>
+  <header>
+    <nav class="navbar">
+        <div class="logo">
+            <img src="Images/logo.png" alt="Website Logo">
+            <span id="websiteName">Health Check</span>
+        </div>
+        <ul class="navLinks">
+            <li><a href="homepage.html">Home</a></li>
+        </ul>
+        
+        <a href="logout.html" class="logout">Logout</a>
+</nav>
   </header>
-
+  
   <!-- Main Content -->
+  <div class="text-center">
+    <p class="text-4xl fontbold text-gray-500 mt-2">Fun</p>
+  </div>
+  <div class="flex justify-center mt-3 space-x-1">
+    <div class="w-4 h-1 bg-blue-300"></div>
+    <div class="w-4 h-1 bg-blue-300"></div>
+    <div class="w-4 h-1 bg-blue-300"></div>
+    <div class="w-4 h-1 bg-blue-300"></div>
+    <div class="w-4 h-1 bg-blue-600"></div> <!-- Step 5 active -->
+    <div class="w-4 h-1 bg-blue-300"></div>
+    <div class="w-4 h-1 bg-blue-300"></div>
+    <div class="w-4 h-1 bg-blue-300"></div>
+    <div class="w-4 h-1 bg-blue-300"></div>
+    <div class="w-4 h-1 bg-blue-300"></div>
+  </div>
   <main class="flex-grow py-12">
     <div class="w-full max-w-6xl mx-auto p-10 border rounded-xl shadow-lg bg-white">
       <div class="flex space-x-6 items-start mb-10">
@@ -87,9 +100,9 @@
     </div>
   </main>
 
-  <!-- Footer -->
-  <footer class="py-8 bg-gray-100 text-center text-sm text-gray-500">
-    © 2025 Sky - All rights reserved.
+   <!-- FOOTER -->
+   <footer class="py-8 bg-gray-100 text-center text-sm text-gray-500">
+    <small>&copy; 2025 Sky Engineering – Health Check</small>
   </footer>
 
   <!-- JavaScript -->

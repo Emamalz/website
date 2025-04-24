@@ -1,0 +1,161 @@
+/* SKY NAVBAR */
+:root {
+  --sky-orange: #ff9a29;
+  --sky-pink:   #ff008c;
+  --sky-blue:   #0081ff;
+  --white:      #ffffff;
+  --white70:    rgba(255,255,255,.7);
+  --header-h:   120px;
+}
+/*reset*/
+*,
+*::before,
+*::after { box-sizing: border-box; margin: 0; padding: 0; }
+body       { font-family: system-ui, sans-serif; line-height: 2.5; }
+
+/* header */
+header{
+  height: var(--header-h);
+  background: linear-gradient(70deg,
+              var(--sky-orange),
+              var(--sky-pink) 40%,
+              var(--sky-blue));
+  border-bottom-left-radius: 1rem;
+  border-bottom-right-radius: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,.12);
+}
+
+.navbar{
+  max-width: 1100px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* logo block */
+.logo{
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.logo img{ height: 40px; width: auto; }
+
+/* nav */
+.navLinks{
+  list-style: none;
+  display: flex;
+  gap: 1.2rem;
+}
+
+.navLinks a{
+  color: var(rgb(0, 0, 0));
+  text-decoration: none;
+  font-weight: 500;
+  padding: .4rem .8rem;
+  border-radius: .4rem;
+  transition: color .2s, background-color .2s;
+}
+
+.navLinks a:hover,
+.navLinks a:focus,
+.navLinks a.active{
+  color: var(--sky-orange);
+  background-color: rgba(250, 120, 13, 0.12);
+}
+
+
+/*padding for the main */
+main{
+  max-width: 1100px;
+  margin: clamp(1rem,4vw,2rem) auto;
+  padding: 0 1rem;
+}
+
+
+/*.navbar positioning */
+.navbar{
+  position:relative;     
+  justify-content:center;   /* keep items horizontally centred */
+}
+
+/* keeps logo centred */
+.logo{
+  position:absolute;
+  left:50%;
+  transform:translateX(-50%);
+}
+
+/* UL hugs the left edge */
+.navLinks{
+  position:absolute;
+  left:1rem;
+  list-style:none;
+  display:flex;
+  gap:1.2rem;
+}
+
+/*  logout link pinned to far-right */
+.logout{
+  position:absolute;
+  right:1rem;
+  color:var(black);
+  text-decoration:none;
+  font-weight:500;
+  padding:.4rem .8rem;
+  border-radius:.4rem;
+  transition:color .2s, background-color .2s;
+}
+
+.logout:hover,
+.logout:focus{
+  color:var(--sky-blue);
+  background:rgba(54, 77, 207, 0.12);
+}
+
+
+
+header{
+  padding: 0.5rem 0;                
+  overflow: visible;        
+}
+
+
+.navbar{
+  background: var(--white);          /* white bar */
+  border-radius: 0.75rem;
+  padding: 0 1.5rem;        
+  box-shadow: 0 2px 6px rgba(0,0,0,.08);
+  max-width: 1000px;         
+  height: 65px;                
+}
+
+/* keep the nav items vertically centred inside the new bar */
+.navbar > *{
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+
+.logo #websiteName{
+  color:#000 !important;
+}
+
+/* Bump up logo icon*/
+.logo img{
+  height: 56px;         
+  width:  auto;
+}
+
+/* Bump up websitename text */
+#websiteName{
+  font-size: 1.6rem;    
+  font-weight: 700;     
+}
