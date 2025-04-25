@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Feedback Trends - Sky</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="header.css">
+</head>
+<body class="bg-gradient-to-b from-blue-200 to-blue-500 font-sans text-gray-800 flex flex-col min-h-screen">
+
+  <!-- Header -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <img src="Images/logo.png" alt="Website Logo">
+        <span id="websiteName">Health Check</span>
+      </div>
+      <ul class="navLinks text-lg">
+        <li><a href="homepage.html">Home</a></li>
+        <li><a href="health.html">Health</a></li>
+        <li class="font-bold text-blue-700"><a href="trends.html">Trends</a></li>
+      </ul>
+      <a href="logout.html" class="logout">Log Out</a>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <main class="flex-grow pb-32">
+    <div class="max-w-5xl mx-auto text-center mt-10 grid grid-cols-1 md:grid-cols-2 gap-4">
+
+      <!-- Left Chart -->
+      <div class="bg-white rounded-lg shadow-lg p-4">
+        <canvas id="statusChart"></canvas>
+      </div>
+
+      <!-- Right Chart -->
+      <div class="bg-white rounded-lg shadow-lg p-4">
+        <canvas id="trendChart"></canvas>
+      </div>
+
+    </div>
+
+    <div class="text-center mt-8">
+      <a href="feedback.html" class="text-xl font-bold text-blue-900 underline hover:text-blue-700 transition">View Feedback Here</a>
+    </div>
+
+    <div class="mt-16">
+      <img src="Images/clouds.png" alt="Clouds Decoration" class="w-full absolute bottom-0">
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="py-4 bg-transparent text-center text-sm text-gray-600 absolute bottom-0 w-full">
+    <small>&copy; 2025 Sky Engineering – Health Check</small>
+  </footer>
+
+  <script>
+    const options = {
+      indexAxis: 'y',
+      scales: { x: { beginAtZero: true, max: 20 } },
+      plugins: { legend: { display: false } },
+      maintainAspectRatio: false
+    };
+
+    const ctxStatus = document.getElementById('statusChart').getContext('2d');
+    new Chart(ctxStatus, {
+      type: 'bar',
+      data: {
+        labels: ['Green', 'Yellow', 'Red'],
+        datasets: [{
+          data: [7, 15, 12],
+          backgroundColor: ['#4ade80', '#facc15', '#f87171'],
+          borderRadius: 10
+        }]
+      },
+      options
+    });
+
+    const ctxTrend = document.getElementById('trendChart').getContext('2d');
+    new Chart(ctxTrend, {
+      type: 'bar',
+      data: {
+        labels: ['Stable', 'Improving', 'Getting Worse'],
+        datasets: [{
+          data: [7, 15, 12],
+          backgroundColor: ['#4ade80', '#facc15', '#f87171'],
+          borderRadius: 10
+        }]
+      },
+      options
+    });
+  </script>
+
+</body>
+</html>
