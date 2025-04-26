@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8">
+        <!-- stylesheet-->
+  <link rel="stylesheet" href="create.css">
+
+  <!-- navigation bar-->
+  <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="Images/logo.png" alt="Website Logo">
+                <span id="websiteName">Health Check</span>
+            </div>
+
+            <a href="Create.html" class="create">Create Account</a>
+</nav>
+        </nav>
+    </header>
+
+      <title>User Login</title>
+      <style>
+
+        /* ───────── center the login card ───────── */
+html, body{ height:100%; }                    
+
+body{
+  display:flex;
+  flex-direction:column;                        
+}
+
+header{ flex:0 0 auto; }
+
+.login-container{
+  flex:1 0 auto;                               
+  margin:auto;                                  
+}
+
+  
+        .login-container {
+          width: 300px;
+          text-align: center;
+        }
+    
+        .logo-placeholder {
+          height: 80px;            
+          margin-bottom: 1rem;
+        }
+    
+        .login-container h1 {
+          margin: 0 0 1rem;
+          font-size: 2.5rem;
+          color: #007bff;
+        }
+    
+        .login-container form {
+          display: flex;
+          flex-direction: column;
+        }
+    
+        .login-container input {
+          width: 100%;
+          padding: 0.5rem;
+          margin: 0.5rem 0;
+          border: 1px solid #ccc;
+          border-radius: 4px;
+        }
+    
+        .login-container button,
+        .login-container .create-account {
+          width: 100%;
+          padding: 0.75rem;
+          margin-top: 0.75rem;
+          border: none;
+          border-radius: 4px;
+          font-size: 1rem;
+          cursor: pointer;
+        }
+    
+        .login-container .forgot-password {
+          background: none;
+          border: none;
+          color: #007bff;
+          text-decoration: underline;
+          font-size: 0.9rem;
+          margin-bottom: 1rem;
+          cursor: pointer;
+        }
+    
+        .login-container .login-btn {
+          background-color: #007bff;
+          color: white;
+        }
+    
+        .login-container .login-btn:hover {
+          background-color: #0056b3;
+        }
+    
+        .login-container .create-account {
+          background-color: #007bff;
+          color: white;
+        }
+    
+        .login-container .create-account:hover {
+          background-color: #007bff;
+        }
+      </style>
+    </head>
+    <body>
+    
+      <div class="login-container">
+        <div class="logo-placeholder">
+          <img src="Images/logo.png" alt="Website Logo" style="max-height:175%; max-width:150%;"> 
+        </div>
+    
+        <h1>User Login</h1>
+    
+        <form action="details.html" method="get">
+          <input type="text" id="username" name="username" placeholder="Username or Email" required>
+          <input type="password" id="password" name="password" placeholder="Password" required>
+    
+          <button type="button" class="forgot-password">Forgot Password?</button>
+          <button type="submit" class="login-btn">Login</button>
+        </form>
+      </div>
+    
+    </body>
+    </html>

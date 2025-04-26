@@ -1,0 +1,276 @@
+/* SKY NAVBAR */
+:root {
+    --sky-orange: #ff9a29;
+    --sky-pink:   #ff008c;
+    --sky-blue:   #0081ff;
+    --white:      #ffffff;
+    --white70:    rgba(255,255,255,.7);
+    --header-h:   120px;
+  }
+  /*reset*/
+  *,
+  *::before,
+  *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body       { font-family: system-ui, sans-serif; line-height: 2.5; }
+  
+  /* header */
+  header{
+    height: var(--header-h);
+    background: linear-gradient(70deg,
+                var(--sky-orange),
+                var(--sky-pink) 40%,
+                var(--sky-blue));
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,.12);
+  }
+  
+  .navbar{
+    max-width: 1100px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  /* logo block */
+  .logo{
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--white);
+  }
+  
+  .logo img{ height: 40px; width: auto; }
+  
+  /* nav */
+  .navLinks{
+    list-style: none;
+    display: flex;
+    gap: 1.2rem;
+  }
+  
+  .navLinks a{
+    color: var(rgb(0, 0, 0));
+    text-decoration: none;
+    font-weight: 500;
+    padding: .4rem .8rem;
+    border-radius: .4rem;
+    transition: color .2s, background-color .2s;
+  }
+  
+  .navLinks a:hover,
+  .navLinks a:focus,
+  .navLinks a.active{
+    color: var(--sky-orange);
+    background-color: rgba(250, 120, 13, 0.12);
+  }
+  
+  
+  /*padding for the main */
+  main{
+    max-width: 1100px;
+    margin: clamp(1rem,4vw,2rem) auto;
+    padding: 0 1rem;
+  }
+  
+  
+  /*.navbar positioning */
+  .navbar{
+    position:relative;     
+    justify-content:center;   /* keep items horizontally centred */
+  }
+  
+  /* keeps logo centred */
+  .logo{
+    position:absolute;
+    left:50%;
+    transform:translateX(-50%);
+  }
+  
+  /* UL hugs the left edge */
+  .navLinks{
+    position:absolute;
+    left:1rem;
+    list-style:none;
+    display:flex;
+    gap:1.2rem;
+  }
+  
+  
+  /*  login link pinned to far-right */
+  .login{
+    position:absolute;
+    right:1rem;
+    color:var(black);
+    text-decoration:none;
+    font-weight:500;
+    padding:.4rem .8rem;
+    border-radius:.4rem;
+    transition:color .2s, background-color .2s;
+  }
+  
+  .login:hover,
+  .login:focus{
+    color:var(--sky-blue);
+    background:rgba(54, 77, 207, 0.12);
+  }
+  
+  
+  header{
+    padding: 0.5rem 0;                
+    overflow: visible;        
+  }
+  
+  
+  .navbar{
+    background: var(--white);          /* white bar */
+    border-radius: 0.75rem;
+    padding: 0 1.5rem;        
+    box-shadow: 0 2px 6px rgba(0,0,0,.08);
+    max-width: 1000px;         
+    height: 65px;                
+  }
+  
+  /* keep the nav items vertically centred inside the new bar */
+  .navbar > *{
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+  
+  
+  .logo #websiteName{
+    color:#000 !important;
+  }
+  
+  /* Bump up logo icon*/
+  .logo img{
+    height: 56px;         
+    width:  auto;
+  }
+  
+  /* Bump up websitename text */
+  #websiteName{
+    font-size: 1.6rem;    
+    font-weight: 700;     
+  }
+  
+  
+  
+  /* Now the main body of datails*//* Now the main body of datails*//* Now the main body of datails*//* Now the main body of datails*/
+  
+  
+  #details{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    margin-top:2rem;
+  }
+  
+  /* brand header inside page */
+  .page-title{
+    font-size:2rem;
+    font-weight:700;
+    margin-bottom:1.5rem;
+    text-align:center;
+  }
+  .brand-logo{
+    display:inline-flex;
+    align-items:center;
+    gap:.4rem;
+  }
+  .brand-logo img{
+    height:48px;
+    width:auto;
+  }
+  .brand-text{
+    color:#000;
+    font-weight:700;
+    font-size:2rem;
+  }
+  
+  /* white card */
+  .card{
+    width:900px;
+    padding:2rem 1.5rem;
+    border-radius:.75rem;
+    box-shadow:0 2px 8px rgba(0,0,0,.1);
+    background:#fff;
+    text-align:center;
+  }
+  .card-title{
+    font-size:1.1rem;
+    margin-bottom:1.5rem;
+  }
+  
+  /* label + icon */
+  .field-label{
+    display:flex;
+    align-items:center;
+    gap:.35rem;
+    font-weight:600;
+    margin-bottom:.5rem;
+  }
+  .icon{ font-size:1rem; }
+  
+  /* select box */
+  select{
+    width:100%;
+    padding:.5rem;
+    border:1px solid #ccc;
+    border-radius:.4rem;
+    margin-bottom:1.2rem;
+    font-size:.95rem;
+  }
+  
+  /* buttons */
+  .next-btn,
+  .view-btn{
+    display:inline-block;
+    width:50%;
+    padding:.5rem 0;
+    border:none;
+    border-radius:1.5rem;
+    font-weight:600;
+    cursor:pointer;
+    margin-bottom:.6rem;
+    transition:background .2s;
+  }
+  .next-btn{
+    background:#ff7b00;
+    color:#fff;
+  }
+  .next-btn:hover{ background:#e56e00; }
+  
+  .view-btn{
+    background:#0066ff;
+    color:#fff;
+  }
+  .view-btn:hover{ background:#0055d4; }
+  
+
+  /* footer*/ /* footer*//* footer*//* footer*//* footer*//* footer*//* footer*//* footer*//* footer*//* footer*//* footer*//* footer*/
+  
+   
+  html, body{ height:100%; }              
+  
+  body{
+    display:flex;
+    flex-direction:column;                   /* header → main → footer */
+  }
+  
+  main{ flex:1; }                            /* pushes footer down */
+  
+  footer{
+    padding:2rem 0;                       
+    background:#f3f4f6;                    
+    text-align:center;                       
+    font-size:.875rem;               
+    color:#6b7280;                       
+  }
+  
