@@ -101,9 +101,8 @@
     gap:1.2rem;
   }
   
-  
-  /*  login link pinned to far-right */
-  .login{
+  /*  create account link pinned to far-right */
+  .create{
     position:absolute;
     right:1rem;
     color:var(black);
@@ -114,8 +113,8 @@
     transition:color .2s, background-color .2s;
   }
   
-  .login:hover,
-  .login:focus{
+  .create :hover,
+  .create :focus{
     color:var(--sky-blue);
     background:rgba(54, 77, 207, 0.12);
   }

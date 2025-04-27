@@ -1,74 +1,79 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sky Health States & Trends</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <div class="container">
-        <!-- Header -->
-        <header>
-            <div class="back-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M19 12H5"></path>
-                    <path d="M12 19l-7-7 7-7"></path>
-                </svg>
-            </div>
-            <div class="sign-out">
-                <a href="#">Sign out</a>
-            </div>
-        </header>
-
-        <!-- Main Content -->
-        <main>
-            <!-- Logo and Title -->
-            <div class="logo-title">
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Sky Health States & Trends</title>
+     <!-- stylesheet-->
+    <link rel="stylesheet" href="index.css">
+ 
+ </head>
+ <body>
+     <div class="container">
+         <!-- Header -->
+         <header>
+            <nav class="navbar">
                 <div class="logo">
-                    <img src="./sky-logo.png" alt="Sky Logo">
+                    <img src="Images/logo.png" alt="Website Logo">
+                    <span id="websiteName">Health Check</span>
                 </div>
-                <h1>Health States & Trends</h1>
-            </div>
+                <ul class="navLinks">
+                    <li><a href="homepage.html">Home</a></li>
+                </ul>
+                
+                <a href="logout.html" class="logout">Logout</a>
+        </nav>
+          </header>
+          
+          <!-- Main Content -->
+         <main>
+             <!-- Title -->
+                 <h1>Health States & Trends</h1>
+ 
+             <!-- Action Button -->
+             <div class="action-button">
+                 <button>Easy to release</button>
+             </div>
+ 
+             <!-- Feedback Cards -->
+             <div class="feedback-section">
+                 <!-- Left Navigation Arrow -->
+                 <div class="nav-arrow left-arrow">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                         <path d="M15 18l-6-6 6-6"></path>
+                     </svg>
+                 </div>
+ 
+                 <!-- Feedback Cards -->
+                 <div class="feedback-cards">
+                     <div class="card">
+                         <p>Feedback</p>
+                     </div>
+                     <div class="card">
+                         <p>Feedback</p>
+                     </div>
+                     <div class="card">
+                         <p>Feedback</p>
+                     </div>
+                 </div>
+ 
+                 <!-- Right Navigation Arrow -->
+                 <div class="nav-arrow right-arrow">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                         <path d="M9 18l6-6-6-6"></path>
+                     </svg>
+                 </div>
+             </div>
+         </main>
+ 
+         <!-- Cloud Decorations -->
+         <div class="clouds"></div>
+     </div>
 
-            <!-- Action Button -->
-            <div class="action-button">
-                <button>Easy to release</button>
-            </div>
+       <!-- FOOTER -->
+   <footer class="py-8 bg-gray-100 text-center text-sm text-gray-500">
+    <small>&copy; 2025 Sky Engineering – Health Check</small>
+  </footer>
 
-            <!-- Feedback Cards -->
-            <div class="feedback-section">
-                <!-- Left Navigation Arrow -->
-                <div class="nav-arrow left-arrow">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M15 18l-6-6 6-6"></path>
-                    </svg>
-                </div>
-
-                <!-- Feedback Cards -->
-                <div class="feedback-cards">
-                    <div class="card">
-                        <p>Feedback</p>
-                    </div>
-                    <div class="card">
-                        <p>Feedback</p>
-                    </div>
-                    <div class="card">
-                        <p>Feedback</p>
-                    </div>
-                </div>
-
-                <!-- Right Navigation Arrow -->
-                <div class="nav-arrow right-arrow">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M9 18l6-6-6-6"></path>
-                    </svg>
-                </div>
-            </div>
-        </main>
-
-        <!-- Cloud Decorations -->
-        <div class="clouds"></div>
-    </div>
-</body>
-</html>
+ </body>
+ </html>
