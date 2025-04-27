@@ -36,8 +36,8 @@
         <div class="w-4 h-1 bg-blue-300"></div>
         <div class="w-4 h-1 bg-blue-300"></div>
         <div class="w-4 h-1 bg-blue-300"></div>
-        <div class="w-4 h-1 bg-blue-600"></div>
-        <div class="w-4 h-1 bg-blue-300"></div> 
+        <div class="w-4 h-1 bg-blue-300"></div>
+        <div class="w-4 h-1 bg-blue-600"></div> 
       </div>
 
   <main class="flex-grow py-12">
@@ -127,19 +127,24 @@
       }
     }
 
-    function validateAndSubmit() {
-      const comments = document.getElementById('comments').value.trim();
-      const actions = document.getElementById('actions').value.trim();
-      const solutions = document.getElementById('solutions').value.trim();
-      const warning = document.getElementById('warningMsg');
-
-      if (!comments || !actions || !solutions) {
-        warning.classList.remove('hidden');
-      } else {
-        warning.classList.add('hidden');
-        alert('Responses submitted! Thank you.');
+      /* … keep your updateStatusColor & updateTrendColor exactly the same … */
+    
+      function validateAndSubmit() {
+        const comments  = document.getElementById('comments').value.trim();
+        const actions   = document.getElementById('actions').value.trim();
+        const solutions = document.getElementById('solutions').value.trim();
+        const warning   = document.getElementById('warningMsg');
+    
+        if (!comments || !actions || !solutions) {
+          warning.classList.remove('hidden');          // show red warning text
+        } else {
+          warning.classList.add('hidden');
+    
+          /* ─── redirect after successful submit ─── */
+          window.location.href = "feedback.html";     
+        }
       }
-    }
-  </script>
+    </script>
+    
 </body>
 </html>
