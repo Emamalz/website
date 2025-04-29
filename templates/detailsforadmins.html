@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- title -->
+  <title>Sky Health Check</title>
+
+  <!-- stylesheet-->
+  <link rel="stylesheet" href="details.css">
+</head>
+
+<body>
+
+  <!-- navigation bar-->
+  <header>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="Images/logo.png" alt="Website Logo">
+                <span id="websiteName">Health Check</span>
+            </div>
+            <ul class="navLinks">
+                <li><a href="homepage.html">Home</a></li>
+            </ul>
+
+            <a href="logout.html" class="logout">Logout</a>
+</nav>
+        </nav>
+    </header>
+
+  <main>
+ 
+    <section id="details">
+      
+        <div class="card">
+      
+          <h1 class="card-title">Please Fill In Your Details</h1>
+          
+          <form action="Intro.html" method="get">
+            <label for="fullname" class="field-label">Full name</label>
+            <input id="fullname" name="fullname" class="team-input" required />
+          
+            <label for="team" class="field-label"><span class="icon">🔍</span> Team</label>
+            <select id="team" name="team" required>
+              <option value="" disabled selected>Please Select Your Team</option>
+             <option>XTV TV1-ALPACAS</option>
+              <option>XYV TV2-ROKU</option>
+              <option>XTV TV3-BEES</option>
+              <option>XTV TV4-DINGOES</option>
+            </select>
+      
+            <button type="submit" class="next-btn">Next</button>
+            <button type="button" class="view-btn">View Team Results</button>
+          </form>
+      
+        </div>
+      
+      </section>
+      
+  </main>
+
+   <!-- FOOTER -->
+   <footer class="py-8 bg-gray-100 text-center text-sm text-gray-500">
+    <small>&copy; 2025 Sky Engineering – Health Check</small>
+  </footer>
+
+</body>
+</html>

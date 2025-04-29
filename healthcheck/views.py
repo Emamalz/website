@@ -1,0 +1,22 @@
+from django.shortcuts import render
+
+def index(request): return render(request, 'index.html')
+def feedback(request): return render(request, 'feedback.html')
+def trends(request): return render(request, 'trends.html')
+def login(request): return render(request, 'Login.html')
+def logout(request): return render(request, 'logout.html')
+
+def deliver(request): return render(request, 'Deliver.html')
+def details(request): return render(request, 'details.html')
+def detailsforadmins(request): return render(request, 'detailsforadmins.html')
+def easeofrelease(request): return render(request, 'Easeofrelease.html')
+def factors(request): return render(request, 'factors.html')
+def fun(request): return render(request, 'Fun.html')
+def healthbasecoder(request): return render(request, 'healthbasecoder.html')
+def intro(request): return render(request, 'Intro.html')
+def learning(request): return render(request, 'Learning.html')
+def mission(request): return render(request, 'Mission.html')
+def pawnsorplayers(request): return render(request, 'pawnsorplayers.html')
+def speed(request): return render(request, 'Speed.html')
+def suitableprocess(request): return render(request, 'Suitable process.html')
+def support(request): return render(request, 'Support.html')
