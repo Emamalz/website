@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Loading…</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <!-- after 5s go to homepage.html -->
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        window.location.href = 'homepage.html';  // change to your landing page
+      }, 5000);
+    });
+  </script>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+    }
+    body {
+      background: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    /* adjust the size as needed */
+    img.logo {
+      max-width: 200px;
+      max-height: 200px;
+    }
+  </style>
+</head>
+<body>
+  <img class="logo" src="Images/logo.png" alt="Sky Logo">
+</body>
+</html>
