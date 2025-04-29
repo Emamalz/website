@@ -1,0 +1,52 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sky Health Check</title>
+
+  <!-- Link to your CSS -->
+  <link rel="stylesheet" href="{% static 'details.css' %}">
+</head>
+
+<body>
+
+  <!-- Navigation bar -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <img src="{% static 'Images/logo.png' %}" alt="Website Logo">
+        <span id="websiteName">Health Check</span>
+      </div>
+      <ul class="navLinks">
+        <li><a href="{% url 'select_team' %}">Home</a></li>
+      </ul>
+      <a href="{% url 'select_team' %}" class="logout">Logout</a>
+    </nav>
+  </header>
+
+  <main>
+    <section id="details">
+      <div class="card">
+        <h1 class="card-title">Please Fill In Your Details</h1>
+
+        <form method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <div id="actions">
+            <button type="submit" class="next-btn">Next</button>
+          </div>
+        </form>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-8 bg-gray-100 text-center text-sm text-gray-500">
+    <small>&copy; 2025 Sky Engineering – Health Check</small>
+  </footer>
+
+</body>
+</html>

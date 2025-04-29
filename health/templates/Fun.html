@@ -1,0 +1,122 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fun - Sky</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="{% static 'header.css' %}">
+</head>
+
+<body class="bg-gray-50 font-sans text-gray-800 flex flex-col min-h-screen">
+<header>
+  <nav class="navbar">
+    <div class="logo">
+      <img src="{% static 'Images/logo.png' %}" alt="Website Logo">
+      <span id="websiteName">Health Check</span>
+    </div>
+    <ul class="navLinks">
+      <li><a href="{% url 'select_team' %}">Home</a></li>
+    </ul>
+    <a href="{% url 'select_team' %}" class="logout">Logout</a>
+  </nav>
+</header>
+
+<div class="text-center">
+  <p class="text-4xl font-bold text-gray-500 mt-2">Fun</p>
+  <div class="flex justify-center mt-3 space-x-1">
+    <div class="w-4 h-1 bg-blue-300"></div>
+    <div class="w-4 h-1 bg-blue-300"></div>
+    <div class="w-4 h-1 bg-blue-300"></div>
+    <div class="w-4 h-1 bg-blue-300"></div>
+    <div class="w-4 h-1 bg-blue-600"></div>
+    <div class="w-4 h-1 bg-blue-300"></div>
+    <div class="w-4 h-1 bg-blue-300"></div>
+    <div class="w-4 h-1 bg-blue-300"></div>
+    <div class="w-4 h-1 bg-blue-300"></div>
+    <div class="w-4 h-1 bg-blue-300"></div>
+  </div>
+</div>
+
+<main class="flex-grow py-12">
+  <form method="POST" class="w-full max-w-6xl mx-auto p-10 border rounded-xl shadow-lg bg-white">
+    {% csrf_token %}
+    <input type="hidden" name="card_title" value="Fun">
+
+    <div class="flex space-x-6 items-start mb-10">
+      <div class="flex-shrink-0">
+        <img src="{% static '3301551.png' %}" alt="Traffic Light" class="w-40 h-40" />
+      </div>
+      <div class="flex-1 flex flex-col items-center text-center space-y-4">
+        <div>
+          <p class="text-xl font-semibold">Work should be enjoyable and motivating.</p>
+          <p class="text-red-600 text-lg">Lack of fun can impact morale and creativity.</p>
+        </div>
+        <div class="flex gap-4">
+          <select name="status" onchange="updateStatusColor(this)"
+            class="border rounded px-4 py-2 text-lg font-semibold bg-green-100 text-green-700">
+            <option value="Green" selected>Green</option>
+            <option value="Amber">Amber</option>
+            <option value="Red">Red</option>
+          </select>
+
+          <select name="trend" onchange="updateTrendColor(this)"
+            class="border rounded px-4 py-2 text-lg font-semibold bg-red-100 text-red-700">
+            <option value="Stable">Stable</option>
+            <option value="Getting Worse" selected>Getting Worse</option>
+            <option value="Improving">Improving</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div class="space-y-6 text-lg">
+      <div>
+        <h3 class="font-bold mb-1">Comments</h3>
+        <textarea name="comments" maxlength="2000" class="w-full border rounded p-3 text-base text-gray-700" rows="3"></textarea>
+      </div>
+      <div>
+        <h3 class="font-bold mb-1">Actions team can take</h3>
+        <textarea name="actions" maxlength="2000" class="w-full border rounded p-3 text-base text-gray-700" rows="3"></textarea>
+      </div>
+      <div>
+        <h3 class="font-bold mb-1">Solutions</h3>
+        <input name="solutions" maxlength="2000" type="text" class="border p-3 w-full rounded text-purple-600 text-base" />
+      </div>
+    </div>
+
+    <div class="flex justify-between max-w-6xl mx-auto mt-12 px-10">
+      <a href="{% url 'learning' %}" class="text-white bg-red-600 px-6 py-2 text-lg rounded shadow">⬅ PREV</a>
+      <button type="submit" class="text-white bg-blue-600 px-6 py-2 text-lg rounded shadow">NEXT ➡</button>
+    </div>
+  </form>
+</main>
+
+<footer class="py-8 bg-gray-100 text-center text-sm text-gray-500">
+  <small>&copy; 2025 Sky Engineering – Health Check</small>
+</footer>
+
+<script>
+  function updateStatusColor(select) {
+    select.classList.remove('bg-green-100', 'text-green-700', 'bg-yellow-100', 'text-yellow-800', 'bg-red-100', 'text-red-700');
+    if (select.value === 'Green') {
+      select.classList.add('bg-green-100', 'text-green-700');
+    } else if (select.value === 'Amber') {
+      select.classList.add('bg-yellow-100', 'text-yellow-800');
+    } else if (select.value === 'Red') {
+      select.classList.add('bg-red-100', 'text-red-700');
+    }
+  }
+
+  function updateTrendColor(select) {
+    select.classList.remove('bg-green-100', 'text-green-700', 'bg-red-100', 'text-red-700');
+    if (select.value === 'Stable' || select.value === 'Improving') {
+      select.classList.add('bg-green-100', 'text-green-700');
+    } else {
+      select.classList.add('bg-red-100', 'text-red-700');
+    }
+  }
+</script>
+
+</body>
+</html>

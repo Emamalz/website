@@ -1,0 +1,118 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pawns or Players - Sky</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="{% static 'header.css' %}">
+</head>
+<body class="bg-gray-50 font-sans text-gray-800 flex flex-col min-h-screen">
+
+<!-- Header -->
+<header>
+  <nav class="navbar">
+    <div class="logo flex items-center space-x-2">
+      <img src="{% static 'Images/logo.png' %}" alt="Website Logo" class="h-10">
+      <span id="websiteName" class="text-xl font-bold">Health Check</span>
+    </div>
+    <ul class="navLinks flex gap-6">
+      <li><a href="{% url 'select_team' %}" class="text-blue-600 hover:underline">Home</a></li>
+      <li><a href="{% url 'select_team' %}" class="text-blue-600 hover:underline">Logout</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- Main Content -->
+<div class="text-center mt-8">
+  <h2 class="text-3xl font-bold text-gray-600">Pawns or Players</h2>
+  <div class="flex justify-center mt-4 space-x-1">
+    {% for i in "1234567890" %}
+      <div class="w-4 h-1 {% if forloop.counter == 10 %}bg-blue-600{% else %}bg-blue-300{% endif %}"></div>
+    {% endfor %}
+  </div>
+</div>
+
+<main class="flex-grow py-12">
+  <form method="POST" class="w-full max-w-6xl mx-auto p-10 border rounded-xl shadow-lg bg-white">
+    {% csrf_token %}
+    <input type="hidden" name="card_title" value="Pawns or Players">
+
+    <div class="flex flex-col md:flex-row md:space-x-6 items-center mb-10">
+      <div class="flex-shrink-0">
+        <img src="{% static '3301551.png' %}" alt="Traffic Light" class="w-40 h-40" />
+      </div>
+      <div class="flex-1 text-center space-y-4">
+        <p class="text-xl font-semibold">Do team members feel empowered to shape outcomes or just follow orders?</p>
+        <p class="text-red-600 text-lg">When people feel like pawns, they disengage. Players take ownership and drive value.</p>
+        <div class="flex justify-center gap-4 mt-4">
+          <select name="status" onchange="updateStatusColor(this)" class="border rounded px-4 py-2 text-lg font-semibold bg-green-100 text-green-700">
+            <option value="Green" selected>Green</option>
+            <option value="Amber">Amber</option>
+            <option value="Red">Red</option>
+          </select>
+
+          <select name="trend" onchange="updateTrendColor(this)" class="border rounded px-4 py-2 text-lg font-semibold bg-red-100 text-red-700">
+            <option value="Stable">Stable</option>
+            <option value="Getting Worse" selected>Getting Worse</option>
+            <option value="Improving">Improving</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- Editable Sections -->
+    <div class="space-y-6 text-lg">
+      <div>
+        <h3 class="font-bold mb-1">Comments</h3>
+        <textarea name="comments" maxlength="2000" class="w-full border rounded p-3 text-base text-gray-700" rows="3"></textarea>
+      </div>
+      <div>
+        <h3 class="font-bold mb-1">Actions team can take</h3>
+        <textarea name="actions" maxlength="2000" class="w-full border rounded p-3 text-base text-gray-700" rows="3"></textarea>
+      </div>
+      <div>
+        <h3 class="font-bold mb-1">Solutions</h3>
+        <input name="solutions" maxlength="2000" type="text" class="border p-3 w-full rounded text-purple-600 text-base" />
+      </div>
+      <p id="warningMsg" class="text-red-600 font-semibold hidden">Please fill out all fields before submitting.</p>
+    </div>
+
+    <!-- Navigation Buttons -->
+    <div class="flex justify-between max-w-6xl mx-auto mt-12 px-10">
+      <a href="{% url 'support' %}" class="text-white bg-red-600 px-6 py-2 text-lg rounded shadow hover:bg-red-700">⬅ PREV</a>
+      <button type="submit" class="text-white bg-green-600 px-6 py-2 text-lg rounded shadow hover:bg-green-700">SUBMIT ✅</button>
+    </div>
+  </form>
+</main>
+
+<!-- Footer -->
+<footer class="py-8 bg-gray-100 text-center text-sm text-gray-500">
+  <small>&copy; 2025 Sky Engineering – Health Check</small>
+</footer>
+
+<!-- JavaScript -->
+<script>
+  function updateStatusColor(select) {
+    select.classList.remove('bg-green-100', 'text-green-700', 'bg-yellow-100', 'text-yellow-800', 'bg-red-100', 'text-red-700');
+    if (select.value === 'Green') {
+      select.classList.add('bg-green-100', 'text-green-700');
+    } else if (select.value === 'Amber') {
+      select.classList.add('bg-yellow-100', 'text-yellow-800');
+    } else if (select.value === 'Red') {
+      select.classList.add('bg-red-100', 'text-red-700');
+    }
+  }
+
+  function updateTrendColor(select) {
+    select.classList.remove('bg-green-100', 'text-green-700', 'bg-red-100', 'text-red-700');
+    if (select.value === 'Stable' || select.value === 'Improving') {
+      select.classList.add('bg-green-100', 'text-green-700');
+    } else {
+      select.classList.add('bg-red-100', 'text-red-700');
+    }
+  }
+</script>
+
+</body>
+</html>

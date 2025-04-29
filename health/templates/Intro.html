@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Introduction - Health Check</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="{% static 'header.css' %}">
+</head>
+
+<body class="bg-gray-50 font-sans text-gray-800 flex flex-col min-h-screen">
+
+  <!-- Header -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <img src="{% static 'Images/logo.png' %}" alt="Website Logo">
+        <span id="websiteName">Health Check</span>
+      </div>
+      <ul class="navLinks">
+        <li><a href="{% url 'select_team' %}">Home</a></li>
+      </ul>
+      <a href="{% url 'select_team' %}" class="logout">Logout</a>
+    </nav>
+  </header>
+
+  <!-- Main Content -->
+  <div class="text-center">
+    <p class="text-4xl font-bold text-gray-500 mt-2">Complete your Health Check Card</p>
+  </div>
+
+  <main class="flex-grow py-12">
+    <div class="max-w-5xl mx-auto px-6">
+
+      <!-- Introduction Box -->
+      <section class="bg-white p-10 rounded-xl shadow-md">
+        <h2 class="text-2xl font-semibold text-center mb-8 text-gray-700">
+          Understanding the Health Check Process
+        </h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+          <!-- Steps -->
+          <div class="space-y-5 text-base leading-relaxed">
+            <p><span class="font-semibold text-gray-700">Step 1:</span> Each performance area is evaluated on its own page.</p>
+            <p><span class="font-semibold text-gray-700">Step 2:</span> You'll choose a traffic light color to reflect current status.</p>
+            <p><span class="font-semibold text-gray-700">Step 3:</span> Indicate the trend — whether things are improving, stable, or worsening.</p>
+            <p><span class="font-semibold text-gray-700">Step 4:</span> Add comments and actionable ideas for improvement.</p>
+            <p><span class="font-semibold text-gray-700">Step 5:</span> Submit at the end to complete the health check.</p>
+          </div>
+
+          <!-- Traffic Light Visuals -->
+          <div class="flex flex-col items-center space-y-5">
+            <img src="{% static '3301551.png' %}" alt="Traffic Light" class="w-40 h-40 rounded" />
+            <div class="text-left space-y-1 text-sm">
+              <p><span class="inline-block w-3 h-3 rounded-full bg-red-600 mr-2"></span> <strong>Red</strong> — Getting worse</p>
+              <p><span class="inline-block w-3 h-3 rounded-full bg-yellow-400 mr-2"></span> <strong>Yellow</strong> — Improving</p>
+              <p><span class="inline-block w-3 h-3 rounded-full bg-green-600 mr-2"></span> <strong>Green</strong> — Stable</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Additional Guidance -->
+      <section class="mt-10 p-8 bg-white rounded-xl shadow-sm space-y-4 text-base leading-relaxed">
+        <p>🧠 This process helps your team reflect, assess, and identify what needs attention.</p>
+        <p>🤝 Use the insights to foster transparency, accountability, and open dialogue.</p>
+        <p>✅ There are no right or wrong answers — just honest feedback and room to grow.</p>
+      </section>
+
+      <!-- Centered NEXT Button -->
+      <div class="mt-12 flex justify-center">
+        <form method="get" action="{% url 'deliver' %}">
+          <button type="submit" class="bg-blue-600 text-white px-8 py-3 text-lg rounded-md shadow hover:bg-blue-700 transition">
+            CLICK HERE TO REVIEW YOUR TEAM
+          </button>
+        </form>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-8 bg-gray-100 text-center text-sm text-gray-500">
+    <small>&copy; 2025 Sky Engineering – Health Check</small>
+  </footer>
+
+</body>
+</html>

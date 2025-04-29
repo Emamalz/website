@@ -1,0 +1,51 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Health Check Card</title>
+
+  <!-- Link your own CSS -->
+  <link rel="stylesheet" href="{% static 'details.css' %}">
+  <link rel="stylesheet" href="{% static 'styles.css' %}">
+  <link rel="stylesheet" href="{% static 'header.css' %}">
+</head>
+
+<body>
+
+  <!-- Navigation Bar -->
+  <header>
+    <nav class="navbar">
+      <div class="logo">
+        <img src="{% static 'Images/logo.png' %}" alt="Website Logo">
+        <span id="websiteName">Health Check</span>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main Section -->
+  <main>
+    <section id="health-card">
+      <div class="card">
+        <h1 class="card-title">Fill Your Health Details</h1>
+
+        <form method="post">
+          {% csrf_token %}
+          {{ form.as_p }}
+          <div id="actions">
+            <button type="submit" class="next-btn">Submit</button>
+          </div>
+        </form>
+
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="py-8 bg-gray-100 text-center text-sm text-gray-500">
+    <small>&copy; 2025 Sky Engineering – Health Check</small>
+  </footer>
+
+</body>
+</html>
