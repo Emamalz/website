@@ -1,6 +1,9 @@
 from django.shortcuts import render, redirect
 from .forms import SelectTeamForm, HealthCheckEntryForm
 from .models import Team, HealthCheckEntry
+from django.db.models import Count
+from django.utils.safestring import mark_safe
+import json
 
 # 1. Select team view
 def select_team(request):
@@ -255,5 +258,27 @@ def trends(request): return render(request, 'trends.html')
 def login(request): return render(request, 'Login.html')
 def logout(request): return render(request, 'logout.html')
 def factors(request): return render(request, 'factors.html')
+def factors_view(request):
+    team_id = 1
+    entries = HealthCheckEntry.objects.filter(team_id=team_id)
+
+    print("🔍 ENTRIES:", entries)
+
+    factor_data = {}
+
+    for card in entries.values_list('card_title', flat=True).distinct():
+        counts = entries.filter(card_title=card).values('status').annotate(count=Count('id'))
+        print("📊 CARD:", card, "| COUNTS:", list(counts))
+
+        factor_data[card] = {'Green': 0, 'Amber': 0, 'Red': 0}
+        for row in counts:
+            if row['status'] in factor_data[card]:
+                factor_data[card][row['status']] = row['count']
+
+    print("✅ FACTOR_DATA:", factor_data)
+
+    return render(request, 'factors.html', {
+        'factor_data': mark_safe(json.dumps(factor_data))
+    })
 
 

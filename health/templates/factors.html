@@ -1,55 +1,77 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Trends - Sky</title>
+  <title>Factors - Health Check</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="header.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-<body class="bg-gradient-to-b from-blue-200 to-blue-500 font-sans text-gray-800 flex flex-col min-h-screen">
+<body class="bg-gray-50 font-sans text-gray-800 flex flex-col min-h-screen">
 
   <!-- Header -->
-  <header>
-    <nav class="navbar">
-      <div class="logo">
-        <img src="Images/logo.png" alt="Website Logo">
-        <span id="websiteName">Health Check</span>
+  <header class="bg-white shadow">
+    <nav class="navbar max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="logo flex items-center gap-2">
+        <img src="{% static 'Images/logo.png' %}" alt="Logo" class="h-12">
+        <span class="text-2xl font-bold">Health Check</span>
       </div>
-      <ul class="navLinks text-lg">
-        <li><a href="homepage.html">Home</a></li>
-        <li><a href="health.html">Health</a></li>
-        <li class="font-bold text-blue-700"><a href="trends.html">Trends</a></li>
+      <ul class="navLinks flex gap-6 text-lg font-semibold">
+        <li><a href="/" class="hover:text-blue-600">Home</a></li>
+        <li><a href="/health/" class="hover:text-blue-600">Health</a></li>
+        <li><a href="/factors/" class="text-blue-700">Factors</a></li>
       </ul>
-      <a href="logout.html" class="logout">Log Out</a>
     </nav>
   </header>
 
-  <!-- Main Content -->
-  <main class="flex-grow">
-    <div class="max-w-6xl mx-auto text-center mt-20 grid grid-cols-2 md:grid-cols-4 gap-6">
-      <button class="bg-blue-100 hover:bg-blue-200 py-4 px-2 rounded-full font-semibold shadow-md">Delivering Value</button>
-      <button class="bg-blue-100 hover:bg-blue-200 py-4 px-2 rounded-full font-semibold shadow-md">Health of Codebase</button>
-      <button class="bg-blue-100 hover:bg-blue-200 py-4 px-2 rounded-full font-semibold shadow-md">Fun</button>
-      <button class="bg-blue-100 hover:bg-blue-200 py-4 px-2 rounded-full font-semibold shadow-md">Pawns or Players</button>
-      <button class="bg-blue-100 hover:bg-blue-200 py-4 px-2 rounded-full font-semibold shadow-md">Speed</button>
-      <button class="bg-blue-100 hover:bg-blue-200 py-4 px-2 rounded-full font-semibold shadow-md">Teamwork</button>
-      <button class="bg-blue-100 hover:bg-blue-200 py-4 px-2 rounded-full font-semibold shadow-md">Easy to Release</button>
-      <button class="bg-blue-100 hover:bg-blue-200 py-4 px-2 rounded-full font-semibold shadow-md">Learning</button>
-      <button class="bg-blue-100 hover:bg-blue-200 py-4 px-2 rounded-full font-semibold shadow-md">Mission</button>
-      <button class="bg-blue-100 hover:bg-blue-200 py-4 px-2 rounded-full font-semibold shadow-md">Suitable Process</button>
-      <button class="bg-blue-100 hover:bg-blue-200 py-4 px-2 rounded-full font-semibold shadow-md">Support</button>
-      <button class="bg-blue-100 hover:bg-blue-200 py-4 px-2 rounded-full font-semibold shadow-md">Testing</button>
-    </div>
-
-    <div class="mt-16">
-      <img src="Images/clouds.png" alt="Clouds Decoration" class="w-full absolute bottom-0">
+  <!-- Main -->
+  <main class="flex-grow pb-32">
+    <div id="charts" class="max-w-5xl mx-auto text-center mt-10 space-y-12 grid grid-cols-1 md:grid-cols-2 gap-8 px-4">
+      <!-- JS will inject charts here -->
     </div>
   </main>
 
-  <!-- FOOTER -->
-  <footer class="py-4 bg-transparent text-center text-sm text-gray-600 absolute bottom-0 w-full">
+  <footer class="py-4 text-center text-sm text-gray-600">
     <small>&copy; 2025 Sky Engineering – Health Check</small>
   </footer>
+
+  <!-- Charts JS -->
+  <script>
+    window.onload = function () {
+      const factorData = {{ factor_data }};
+      const container = document.getElementById('charts');
+
+      Object.entries(factorData).forEach(([factorName, counts], index) => {
+        const canvasId = `chart-${index}`;
+        const wrapper = document.createElement('div');
+        wrapper.className = "bg-white p-6 rounded-lg shadow-lg";
+        wrapper.innerHTML = `
+          <h2 class="text-xl font-semibold mb-4">${factorName}</h2>
+          <canvas id="${canvasId}" height="150"></canvas>
+        `;
+        container.appendChild(wrapper);
+
+        const ctx = document.getElementById(canvasId).getContext('2d');
+        new Chart(ctx, {
+          type: 'bar',
+          data: {
+            labels: ['Green', 'Amber', 'Red'],
+            datasets: [{
+              label: factorName,
+              data: [counts.Green, counts.Amber, counts.Red],
+              backgroundColor: ['#4ade80', '#facc15', '#f87171'],
+              borderRadius: 10
+            }]
+          },
+          options: {
+            indexAxis: 'y',
+            plugins: { legend: { display: false } },
+            scales: { x: { beginAtZero: true } }
+          }
+        });
+      });
+    };
+  </script>
 
 </body>
 </html>

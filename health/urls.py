@@ -27,7 +27,7 @@ urlpatterns = [
     
     
     
-    
+    path('factors/', views.factors_view, name='factors'),
     path('factors/', views.factors, name='factors'),
 
 
