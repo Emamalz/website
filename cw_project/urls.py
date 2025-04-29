@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
-    path('', include('healthcheck.urls')),
+    path('', include('health.urls')),
     path('admin/', admin.site.urls),
     
 ]

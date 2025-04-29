@@ -250,3 +250,10 @@ def pawnsonplayers(request):
 
 
 
+def feedback(request): return render(request, 'feedback.html')
+def trends(request): return render(request, 'trends.html')
+def login(request): return render(request, 'Login.html')
+def logout(request): return render(request, 'logout.html')
+def factors(request): return render(request, 'factors.html')
+
+

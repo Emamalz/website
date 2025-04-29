@@ -17,4 +17,18 @@ urlpatterns = [
     path('suitableprocess/', views.suitable_process, name='suitable_process'),
     path('pawnsonplayers/', views.pawnsonplayers, name='pawnsonplayers'),
     path('healthbasecoder/', views.healthbasecoder, name='healthbasecoder'),
+    
+
+    path('feedback/', views.feedback, name='feedback'),
+    path('trends/', views.trends, name='trends'),
+    path('login/', views.login, name='login'),
+    path('logout/', views.logout, name='logout'),
+
+    
+    
+    
+    
+    path('factors/', views.factors, name='factors'),
+
+
 ]
