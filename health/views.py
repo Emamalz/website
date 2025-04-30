@@ -1,9 +1,28 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .forms import SelectTeamForm, HealthCheckEntryForm
 from .models import Team, HealthCheckEntry
-from django.db.models import Count
+from django.db.models import Count, Q
 from django.utils.safestring import mark_safe
 import json
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
+from django.urls import reverse_lazy
+from django.views.generic import CreateView
+
+from .forms import RegisterForm
+
+
+
+
+class RegisterView(CreateView):
+    form_class    = UserCreationForm        # ← стандартная форма
+    template_name = "registration/register.html"
+    success_url   = reverse_lazy("login")
+
+
+
+
 
 # 1. Select team view
 def select_team(request):
@@ -251,7 +270,26 @@ def pawnsonplayers(request):
     return render(request, 'pawnsonplayers.html', {'form': form})
 
 
+def login_view(request):
+    """
+    GET  → показать форму
+    POST → попробовать залогинить, затем перейти к выбору команды
+    """
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        user = authenticate(request, username=username, password=password)
+        if user:
+            login(request, user)
+            return redirect("select_team")          # <- куда перекидываем
+        # если не удалось
+        return render(request, "", {"error": "Wrong credentials"})
 
+    return render(request, "registration/Login.html")            # GET
+
+def logout_view(request):
+    logout(request)
+    return redirect("/") 
 
 def feedback(request): return render(request, 'feedback.html')
 def trends(request): return render(request, 'trends.html')
@@ -259,26 +297,78 @@ def login(request): return render(request, 'Login.html')
 def logout(request): return render(request, 'logout.html')
 def factors(request): return render(request, 'factors.html')
 def factors_view(request):
-    team_id = 1
-    entries = HealthCheckEntry.objects.filter(team_id=team_id)
+    team_id = request.session.get('team_id')
 
-    print("🔍 ENTRIES:", entries)
+    # Проверяем, выбрал ли пользователь команду
+    if not team_id:
+        return render(request, 'factors.html', {
+            'error': 'No team selected. Please fill out the health check first.'
+        })
 
+    # Получаем команду или 404
+    team = get_object_or_404(Team, id=team_id)
+
+    # Получаем записи по команде
+    entries = HealthCheckEntry.objects.filter(team=team)
+
+    # Считаем количество статусов по каждой карточке
     factor_data = {}
-
     for card in entries.values_list('card_title', flat=True).distinct():
         counts = entries.filter(card_title=card).values('status').annotate(count=Count('id'))
-        print("📊 CARD:", card, "| COUNTS:", list(counts))
-
         factor_data[card] = {'Green': 0, 'Amber': 0, 'Red': 0}
         for row in counts:
-            if row['status'] in factor_data[card]:
-                factor_data[card][row['status']] = row['count']
+            status = row['status']
+            if status in factor_data[card]:
+                factor_data[card][status] = row['count']
 
-    print("✅ FACTOR_DATA:", factor_data)
-
+    # Возвращаем в шаблон JSON-строку + название команды
     return render(request, 'factors.html', {
-        'factor_data': mark_safe(json.dumps(factor_data))
+        'factor_data': mark_safe(json.dumps(factor_data)),
+        'team_name': team.name
     })
 
+def trends_view(request):
+    """
+    Один общий график: сколько раз каждая команда выбирала Green / Amber / Red.
+    """
+    # ➊ Берём все записи разом
+    qs = (
+        HealthCheckEntry.objects
+        .values('team__name', 'status')
+        .annotate(count=Count('id'))
+    )
 
+    # ➋ Преобразуем в словарь {team_name: {'Green':…, 'Amber':…, 'Red':…}}
+    chart_data = {}
+    for row in qs:
+        team = row['team__name']
+        status = row['status']
+        count  = row['count']
+        chart_data.setdefault(team, {'Green': 0, 'Amber': 0, 'Red': 0})
+        if status in chart_data[team]:
+            chart_data[team][status] = count
+
+    # ➌ Отдаём в шаблон сразу JSON-строкой (как в вашем factors_view)
+    context = {
+        "chart_data": mark_safe(json.dumps(chart_data))  # {team: {Green:…, …}}
+    }
+    return render(request, "teams_comparison.html", context)
+
+def register_view(request):
+    """
+    GET  — показать форму
+    POST — создать юзера, залогинить и отправить выбирать команду
+    """
+    if request.user.is_authenticated:
+        return redirect("select_team")
+
+    if request.method == "POST":
+        form = RegisterForm(request.POST)
+        if form.is_valid():
+            user = form.save()          # создаём пользователя
+            login(request, user)        # сразу логиним
+            return redirect("select_team")
+    else:
+        form = RegisterForm()
+
+    return render(request, "register.html", {"form": form})

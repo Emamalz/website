@@ -126,3 +126,6 @@ import os
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
+LOGIN_URL = "/"          # куда редиректить, если не залогинен
+LOGIN_REDIRECT_URL = "select_team"

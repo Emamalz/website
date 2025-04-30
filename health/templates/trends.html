@@ -4,95 +4,77 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Thank You - Health Check</title>
+  <title>Team Health Comparison</title>
+
+  <!-- Tailwind + Chart.js -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <link rel="stylesheet" href="{% static 'details.css' %}">
 </head>
-
 <body class="bg-gray-50 font-sans text-gray-800 flex flex-col min-h-screen">
 
-  <!-- Header -->
+  <!-- ===== Header (опционально оставьте свой) ===== -->
   <header class="bg-white shadow">
-    <nav class="navbar max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
-      <div class="logo flex items-center gap-2">
-        <img src="{% static 'Images/logo.png' %}" alt="Website Logo" class="h-12">
-        <span id="websiteName" class="text-2xl font-bold text-black">Health Check</span>
+    <nav class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <img src="{% static 'Images/logo.png' %}" alt="Logo" class="h-10">
+        <span class="text-2xl font-bold">Health Check</span>
       </div>
-      <ul class="navLinks flex gap-6 text-lg font-semibold">
+      <ul class="flex gap-6 text-lg font-semibold">
         <li><a href="/" class="hover:text-blue-600">Home</a></li>
         <li><a href="/health/" class="hover:text-blue-600">Health</a></li>
-        <li><a href="/factors/" class="text-blue-700">Factors</a></li>
+        <li><a href="/factors/" class="hover:text-blue-600">Factors</a></li>
+        <li><a href="/trends/" class="text-blue-700">Trends</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Main Content -->
-  <main class="flex-grow pb-32">
-    <div class="max-w-5xl mx-auto text-center mt-10 grid grid-cols-1 md:grid-cols-2 gap-4">
+  <!-- ===== Main ===== -->
+  <main class="max-w-6xl mx-auto p-8 flex-grow">
+    <h2 class="text-2xl font-bold mb-6 text-center">Team Health Comparison</h2>
 
-      <!-- Left Chart -->
-      <div class="bg-white rounded-lg shadow-lg p-4">
-        <canvas id="statusChart"></canvas>
-      </div>
-
-      <!-- Right Chart -->
-      <div class="bg-white rounded-lg shadow-lg p-4">
-        <canvas id="trendChart"></canvas>
-      </div>
-
-    </div>
-
-    <div class="text-center mt-8">
-      <a href="feedback.html" class="text-xl font-bold text-blue-900 underline hover:text-blue-700 transition">View Feedback Here</a>
-    </div>
-
-    <div class="mt-16">
-      <img src="Images/clouds.png" alt="Clouds Decoration" class="w-full absolute bottom-0">
+    <div class="bg-white rounded-lg shadow-lg p-6">
+      <canvas id="statusChart" height="400"></canvas>
     </div>
   </main>
 
-  <!-- FOOTER -->
-  <footer class="py-4 bg-transparent text-center text-sm text-gray-600 absolute bottom-0 w-full">
+  <!-- ===== Footer ===== -->
+  <footer class="py-4 text-center text-sm text-gray-600">
     <small>&copy; 2025 Sky Engineering – Health Check</small>
   </footer>
 
+  <!-- ===== Chart.js ===== -->
   <script>
-    const options = {
-      indexAxis: 'y',
-      scales: { x: { beginAtZero: true, max: 20 } },
-      plugins: { legend: { display: false } },
-      maintainAspectRatio: false
+    window.onload = () => {
+      // данные из Django: { "Team A": {Green:…, Amber:…, Red:…}, … }
+      const raw = {{ chart_data|safe }};
+
+      // Разворачиваем в массивы для Chart.js
+      const labels = Object.keys(raw);                    // ['Team A', 'Team B', …]
+      const greens = labels.map(name => raw[name].Green); // [3, 5, …]
+      const ambers = labels.map(name => raw[name].Amber);
+      const reds   = labels.map(name => raw[name].Red);
+
+      // Строим grouped-bar диаграмму
+      new Chart(document.getElementById('statusChart'), {
+        type: 'bar',
+        data: {
+          labels: labels,
+          datasets: [
+            { label: 'Green', data: greens, backgroundColor: '#4ade80' },
+            { label: 'Amber', data: ambers, backgroundColor: '#facc15' },
+            { label: 'Red',   data: reds,   backgroundColor: '#f87171' },
+          ]
+        },
+        options: {
+          responsive: true,
+          plugins: { legend: { position: 'top' } },
+          scales: {
+            x: { stacked: false },
+            y: { beginAtZero: true }
+          }
+        }
+      });
     };
-
-    const ctxStatus = document.getElementById('statusChart').getContext('2d');
-    new Chart(ctxStatus, {
-      type: 'bar',
-      data: {
-        labels: ['Green', 'Yellow', 'Red'],
-        datasets: [{
-          data: [7, 15, 12],
-          backgroundColor: ['#4ade80', '#facc15', '#f87171'],
-          borderRadius: 10
-        }]
-      },
-      options
-    });
-
-    const ctxTrend = document.getElementById('trendChart').getContext('2d');
-    new Chart(ctxTrend, {
-      type: 'bar',
-      data: {
-        labels: ['Stable', 'Improving', 'Getting Worse'],
-        datasets: [{
-          data: [7, 15, 12],
-          backgroundColor: ['#4ade80', '#facc15', '#f87171'],
-          borderRadius: 10
-        }]
-      },
-      options
-    });
   </script>
-
 </body>
 </html>

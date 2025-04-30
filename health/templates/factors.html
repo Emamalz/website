@@ -19,13 +19,16 @@
       <ul class="navLinks flex gap-6 text-lg font-semibold">
         <li><a href="/" class="hover:text-blue-600">Home</a></li>
         <li><a href="/health/" class="hover:text-blue-600">Health</a></li>
-        <li><a href="/factors/" class="text-blue-700">Factors</a></li>
+        <li><a href="/trends/" class="text-blue-700">Trends</a></li>
       </ul>
     </nav>
   </header>
 
   <!-- Main -->
   <main class="flex-grow pb-32">
+    <div class="max-w-5xl mx-auto text-center mt-10">
+      <h1 class="text-3xl font-bold mb-4">Team: {{ team_name }}</h1>
+    </div>
     <div id="charts" class="max-w-5xl mx-auto text-center mt-10 space-y-12 grid grid-cols-1 md:grid-cols-2 gap-8 px-4">
       <!-- JS will inject charts here -->
     </div>

@@ -1,8 +1,11 @@
 from django.urls import path
 from . import views
+from .views import RegisterView
 
 urlpatterns = [
-    path('', views.select_team, name='select_team'),
+    path('',          views.login_view,  name='login'),
+    path('select_team/', views.select_team, name='select_team'),
+    path('register/', RegisterView.as_view(), name='register'),
     path('intro/', views.intro_page, name='intro_page'),
     path('done/', views.done, name='done'),
 
@@ -21,14 +24,14 @@ urlpatterns = [
 
     path('feedback/', views.feedback, name='feedback'),
     path('trends/', views.trends, name='trends'),
-    path('login/', views.login, name='login'),
-    path('logout/', views.logout, name='logout'),
+    path('registration/logout/', views.logout_view, name='logout'),
 
     
     
     
     path('factors/', views.factors_view, name='factors'),
     path('factors/', views.factors, name='factors'),
+    path('trends/', views.trends_view, name='trends'),
 
 
 ]

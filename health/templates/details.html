@@ -22,7 +22,10 @@
       <ul class="navLinks">
         <li><a href="{% url 'select_team' %}">Home</a></li>
       </ul>
-      <a href="{% url 'select_team' %}" class="logout">Logout</a>
+      <form method="post" action="{% url 'logout' %}">
+        {% csrf_token %}
+        <button type="submit" class="logout">Logout</button>
+      </form>
     </nav>
   </header>
 
